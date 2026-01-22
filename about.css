@@ -46,4 +46,14 @@ body {
     border-radius: 5px;
     pointer-events: none; /* Allows mouse events to pass through */
     z-index: 2000;
+    /* Default desktop positioning: slightly to the right of cursor point */
+    transform: translate(15px, 0); 
+    transform-origin: top left; /* Ensure transforms are relative to top-left */
+    white-space: nowrap; /* Prevent text wrapping inside popup */
+}
+
+/* Mobile specific positioning for popup */
+#employee-popup.popup-mobile-above {
+    /* Center horizontally (-50% of its own width), move up by 100% of its own height */
+    transform: translate(-50%, -100%); 
 }

@@ -150,6 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const popup = document.getElementById('employee-popup');
             let currentBody = null; // This will now only be set when a body is *pressed*
 
+            // Helper to update popup position and class
+            function updatePopupPosition(eventMousePosition) {
+                const matterContainerRect = matterContainer.getBoundingClientRect();
+                // Set the base left/top relative to the matterContainer's origin (top-left)
+                popup.style.left = `${eventMousePosition.x - matterContainerRect.left}px`;
+                popup.style.top = `${eventMousePosition.y - matterContainerRect.top}px`;
+
+                // Apply mobile-specific class for CSS transform
+                if (isMobile) {
+                    popup.classList.add('popup-mobile-above');
+                } else {
+                    popup.classList.remove('popup-mobile-above'); // Ensure it's removed for desktop
+                }
+            }
+
             // On mousedown/touchstart, show popup
             Events.on(mouseConstraint, 'mousedown', (event) => {
                 const foundBodies = Query.point(bodies, event.mouse.position);
@@ -159,21 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const { name, title } = body.employeeData;
                     popup.innerHTML = `<strong>${name}</strong><br><small>${title}</small>`;
                     popup.style.display = 'block';
-
-                    // Position popup near the cursor, relative to the matterContainer
-                    const matterContainerRect = matterContainer.getBoundingClientRect();
-                    popup.style.left = `${event.mouse.position.x + 15 - matterContainerRect.left}px`;
-                    popup.style.top = `${event.mouse.position.y - matterContainerRect.top}px`;
+                    updatePopupPosition(event.mouse.position); // Set initial position and class
                 }
             });
 
             // On mousemove, update popup position IF a body is "active" (i.e., held down)
             Events.on(mouseConstraint, 'mousemove', (event) => {
                 if (currentBody) { // Only position if a body is currently pressed/active
-                    // Position popup near the cursor, relative to the matterContainer
-                    const matterContainerRect = matterContainer.getBoundingClientRect();
-                    popup.style.left = `${event.mouse.position.x + 15 - matterContainerRect.left}px`;
-                    popup.style.top = `${event.mouse.position.y - matterContainerRect.top}px`;
+                    updatePopupPosition(event.mouse.position); // Update position dynamically
                 }
             });
 
@@ -182,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentBody) { // Only hide if a body was previously pressed
                     currentBody = null;
                     popup.style.display = 'none';
+                    popup.classList.remove('popup-mobile-above'); // Clean up class
                 }
             });
 
@@ -191,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentBody) { // Only hide if a body was active
                     currentBody = null;
                     popup.style.display = 'none';
+                    popup.classList.remove('popup-mobile-above'); // Clean up class
                 }
             });
 
