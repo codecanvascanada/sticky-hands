@@ -19,7 +19,7 @@
             <a href="index.html" class="logo-text">StickyHands</a>
         </div>
         
-        <nav class="main-nav">
+        <nav class="main-nav" id="mainNav">
             <ul class="nav-links">
                 <li><a href="index.html#games">Games</a></li>
                 <li><a href="index.html#company">Company</a></li>
@@ -32,7 +32,7 @@
                 <a href="#">EN</a>
             </div>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerMenu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
@@ -80,6 +80,29 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const mainNav = document.getElementById('mainNav');
+            const navLinks = mainNav.querySelector('.nav-links');
+
+            if (hamburgerMenu && mainNav && navLinks) {
+                hamburgerMenu.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

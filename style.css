@@ -299,6 +299,13 @@ section h2 {
     transition: filter 0.3s ease;
 }
 
+.game-card-placeholder-img {
+    width: 100%;
+    height: 200px; /* Matches the height of .game-card-item img */
+    background-color: #f0f0f0; /* Matches the game-card-item background */
+    display: block;
+}
+
 .game-card-item:hover img {
     filter: brightness(0.8);
 }
@@ -316,6 +323,11 @@ section h2 {
 
 .game-card-item:hover .game-title {
     background-color: #d0d0d0;
+}
+
+.game-card-item .game-title.faded-text {
+    color: #888; /* Lighter grey */
+    opacity: 0.6; /* Semi-transparent */
 }
 
 /* --- Company Section --- */
@@ -692,11 +704,14 @@ section h2 {
         font-size: 1rem;
     }
     
-    /* 모바일 장식 이미지 크기 설정 (이전 비율 유지) */
-    .hero-decor-left {
-        width: 126px;
-    }
+    /* 모바일 장식 이미지 숨기기 */
+    .hero-decor-left,
     .hero-decor-right {
-        width: 164px;
+        display: none;
+    }
+
+    /* 게임 그리드를 모바일에서 단일 열로 */
+    .games-section .game-grid {
+        grid-template-columns: 1fr;
     }
 }
