@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Boss mob",
+        "title": "CEO / Business",
+        "code": 0
+    },
+    {
+        "name": "Lady boss",
+        "title": "Creative Director / PD / AD / UI",
+        "code": 1
+    },
+    {
+        "name": "Goon",
+        "title": "CTO / Server / Client",
+        "code": 1
+    },
+    {
+        "name": "Tenvolts",
+        "title": "Senior Programmer / Client",
+        "code": 2
+    },
+    {
+        "name": "AudioDJ",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "Sara",
+        "title": "Chief Graphic Designer / PD / UI",
+        "code": 1
+    },
+    {
+        "name": "Sleepot",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "KDY",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "Songun",
+        "title": "Chief Game Designer / Game Design",
+        "code": 1
+    },
+    {
+        "name": "changhyeon",
+        "title": "Senior Programmer / Client",
+        "code": 2
+    },
+    {
+        "name": "phmonkey",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "eveyeye",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "SYS",
+        "title": "Business Director / Business",
+        "code": 1
+    },
+    {
+        "name": "wooyoung",
+        "title": "Senior Programmer / Client",
+        "code": 2
+    },
+    {
+        "name": "sangwoo",
+        "title": "Graphic Designer / Graphic",
+        "code": 3
+    },
+    {
+        "name": "zero",
+        "title": "Senior Programmer / Client",
+        "code": 2
+    },
+    {
+        "name": "my0928",
+        "title": "Game Designer / Game Design",
+        "code": 4
+    },
+    {
+        "name": "Aruu",
+        "title": "Screenwriter / Game Design",
+        "code": 4
+    },
+    {
+        "name": "detail.kim",
+        "title": "Game Designer / Game Design",
+        "code": 4
+    },
+    {
+        "name": "songhilly",
+        "title": "Graphic Designer / UI",
+        "code": 3
+    }
+]
