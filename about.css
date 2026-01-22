@@ -47,14 +47,3 @@ body {
     pointer-events: none; /* Allows mouse events to pass through */
     z-index: 2000;
 }
-
-#employee-popup {
-    position: fixed;
-    display: none;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    pointer-events: none;
-    z-index: 2000;
-}
