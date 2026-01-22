@@ -63,9 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 nameElements.push({ employeeData: employee, element: nameDiv, body: null }); // 'body' will be assigned later
             });
 
+            // Determine if it's a mobile screen
+            const isMobile = window.innerWidth <= 768;
+            const radiusMultiplier = isMobile ? 0.8 : 1; // Scale to 80% on mobile
+
             // --- Body Creation ---
             const bodies = employees.map((employee, i) => {
-                const radius = Math.random() * 20 + 30; // 30px to 50px radius
+                const baseRadius = Math.random() * 20 + 30; // Original 30px to 50px radius
+                const radius = baseRadius * radiusMultiplier; // Apply scaling
                 const x = matterContainer.clientWidth / 2; // Start exactly at center X
                 const y = matterContainer.clientHeight / 2; // Start exactly at center Y
 
