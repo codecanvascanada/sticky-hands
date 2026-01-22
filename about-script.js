@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Central Force ---
             const center = { x: matterContainer.clientWidth / 2, y: matterContainer.clientHeight / 2 };
-            const pullForce = 0.0001; // Very gentle pull
+            const pullForce = 0.0003; // Adjusted pull force for centering
             const repulsionForce = 0.001; // Very gentle repulsion
 
             Events.on(engine, 'beforeUpdate', () => {
@@ -148,28 +148,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Popup Logic for Canvas ---
             const popup = document.getElementById('employee-popup');
-            let currentBody = null;
+            let currentBody = null; // This will now only be set when a body is *pressed*
 
-            Events.on(mouseConstraint, 'mousemove', (event) => {
+            // On mousedown/touchstart, show popup
+            Events.on(mouseConstraint, 'mousedown', (event) => {
                 const foundBodies = Query.point(bodies, event.mouse.position);
-                
                 if (foundBodies.length > 0) {
                     const body = foundBodies[0];
-                    if (currentBody !== body) {
-                        currentBody = body;
-                        const { name, title } = body.employeeData;
-                        popup.innerHTML = `<strong>${name}</strong><br><small>${title}</small>`;
-                        popup.style.display = 'block';
-                    }
+                    currentBody = body; // Set currentBody on press
+                    const { name, title } = body.employeeData;
+                    popup.innerHTML = `<strong>${name}</strong><br><small>${title}</small>`;
+                    popup.style.display = 'block';
+
                     // Position popup near the cursor, relative to the matterContainer
                     const matterContainerRect = matterContainer.getBoundingClientRect();
                     popup.style.left = `${event.mouse.position.x + 15 - matterContainerRect.left}px`;
                     popup.style.top = `${event.mouse.position.y - matterContainerRect.top}px`;
-                } else {
-                    if (currentBody) {
-                        currentBody = null;
-                        popup.style.display = 'none';
-                    }
+                }
+            });
+
+            // On mousemove, update popup position IF a body is "active" (i.e., held down)
+            Events.on(mouseConstraint, 'mousemove', (event) => {
+                if (currentBody) { // Only position if a body is currently pressed/active
+                    // Position popup near the cursor, relative to the matterContainer
+                    const matterContainerRect = matterContainer.getBoundingClientRect();
+                    popup.style.left = `${event.mouse.position.x + 15 - matterContainerRect.left}px`;
+                    popup.style.top = `${event.mouse.position.y - matterContainerRect.top}px`;
+                }
+            });
+
+            // On mouseup/touchend, hide popup
+            Events.on(mouseConstraint, 'mouseup', () => {
+                if (currentBody) { // Only hide if a body was previously pressed
+                    currentBody = null;
+                    popup.style.display = 'none';
+                }
+            });
+
+            // Add mouseleave listener to matterContainer to hide popup when mouse leaves canvas area
+            // This acts as a fallback if mouseup doesn't fire (e.g., drag off canvas)
+            matterContainer.addEventListener('mouseleave', () => {
+                if (currentBody) { // Only hide if a body was active
+                    currentBody = null;
+                    popup.style.display = 'none';
                 }
             });
 
