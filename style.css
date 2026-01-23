@@ -71,6 +71,11 @@ img {
     align-items: center;
 }
 
+.logo {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically center the image and text */
+}
+
 /* StickyHands 텍스트 로고 스타일 */
 .logo-text {
     font-family: 'Orbitron', sans-serif;
@@ -80,6 +85,11 @@ img {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo-icon {
+    height: 1.8rem; /* Reduced size */
+    margin-right: 0.5rem; /* Space between icon and text */
 }
 
 .logo-text:hover {
@@ -332,7 +342,7 @@ section h2 {
 
 /* --- Company Section --- */
 .company-section {
-    background-color: #ffffff;
+    background-color: lightgreen; /* Temporarily set to lightgreen for user to identify */
 }
 
 .company-info-block {
@@ -340,7 +350,7 @@ section h2 {
     display: flex; /* Make it a flex container */
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center children horizontally */
-    max-width: 800px; /* Reduced max width */
+    max-width: 600px; /* Reduced max width */
     margin: 0 auto; /* Center the info block on the page */
 }
 
@@ -363,7 +373,7 @@ section h2 {
 }
 
 .grid-item-image .company-anniversary-image {
-    max-width: 50%; /* Image increased to 50% */
+    max-width: 70%; /* Adjusted to 45% as per user request */
     height: auto;
     display: block;
     margin: 0 auto; /* Center image horizontally */

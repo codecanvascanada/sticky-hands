@@ -98,5 +98,10 @@
         "name": "songhilly",
         "title": "Graphic Designer / UI",
         "code": 3
+    },
+    {
+        "name": "YOU",
+        "title": "Thanks for Playing!",
+        "code": 100
     }
 ]

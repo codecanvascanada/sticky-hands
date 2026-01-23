@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameElements = []; // To store references to name divs
 
             employees.forEach((employee, i) => {
-                employee.groupColor = colorPalette[employee.code]; // Assign color based on 'code'
+                employee.groupColor = (employee.code === 100) ? '#FF4500' : colorPalette[employee.code]; // Assign red for code 100, otherwise from palette
 
                 // Create HTML element for the name
                 const nameDiv = document.createElement('div');
@@ -66,34 +66,68 @@ document.addEventListener('DOMContentLoaded', () => {
             // Determine if it's a mobile screen
             const isMobile = window.innerWidth <= 768;
             const radiusMultiplier = isMobile ? 0.8 : 1; // Scale to 80% on mobile
+            let bodies;
 
             // --- Body Creation ---
-            const bodies = employees.map((employee, i) => {
-                const baseRadius = Math.random() * 20 + 30; // Original 30px to 50px radius
-                const radius = baseRadius * radiusMultiplier; // Apply scaling
-                const x = matterContainer.clientWidth / 2; // Start exactly at center X
-                const y = matterContainer.clientHeight / 2; // Start exactly at center Y
+            const nonCentralEmployees = employees.filter(emp => emp.code !== 100);
+            const centralEmployees = employees.filter(emp => emp.code === 100);
+
+            const otherBodies = nonCentralEmployees.map((employee) => {
+                const baseRadius = Math.random() * 20 + 30;
+                const radius = baseRadius * radiusMultiplier;
+                const x = matterContainer.clientWidth / 2; // All start at center
+                const y = matterContainer.clientHeight / 2;
 
                 const body = Bodies.circle(x, y, radius, {
                     label: 'employee',
                     restitution: 0.8,
                     friction: 0.5,
                     frictionAir: 0.5,
-                    inertia: Infinity, // Disable rotation for debugging
+                    inertia: Infinity,
                     employeeData: employee,
                     render: {
-                        fillStyle: employee.groupColor, // Apply the group color
-                        // No sprite rendering
+                        fillStyle: employee.groupColor,
                     }
                 });
-                nameElements[i].body = body; // Assign the Matter.js body to the corresponding name element
+                // Find original index to correctly map name element
+                const originalIndex = employees.indexOf(employee);
+                if (originalIndex !== -1) {
+                    nameElements[originalIndex].body = body;
+                }
                 return body;
             });
-            Composite.add(world, bodies);
+
+            const centralBodies = centralEmployees.map((employee) => {
+                const baseRadius = Math.random() * 20 + 30;
+                const radius = baseRadius * radiusMultiplier;
+                const x = matterContainer.clientWidth / 2; // Always at center
+                const y = matterContainer.clientHeight / 2;
+
+                const body = Bodies.circle(x, y, radius, {
+                    label: 'employee',
+                    restitution: 0.8,
+                    friction: 0.5,
+                    frictionAir: 0.5,
+                    inertia: Infinity,
+                    employeeData: employee,
+                    render: {
+                        fillStyle: employee.groupColor,
+                    }
+                });
+                // Find original index to correctly map name element
+                const originalIndex = employees.indexOf(employee);
+                if (originalIndex !== -1) {
+                    nameElements[originalIndex].body = body;
+                }
+                return body;
+            });
+
+            bodies = [...otherBodies, ...centralBodies]; // Central bodies come last in the array
+            Composite.add(world, bodies); // Add all bodies to the world
 
             // --- Central Force ---
             const center = { x: matterContainer.clientWidth / 2, y: matterContainer.clientHeight / 2 };
-            const pullForce = 0.0008; // Increased pull force for faster sticking together
+            const pullForce = 0.0005; // Reduced pull force as it was too strong
             const repulsionForce = 0.00025; // Further reduced repulsion for less tremor
 
             Events.on(engine, 'beforeUpdate', () => {
