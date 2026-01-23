@@ -335,34 +335,95 @@ section h2 {
     background-color: #ffffff;
 }
 
-.company-content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    margin-top: 3rem;
-}
-
 .company-info-block {
-    text-align: left;
+    text-align: center; /* Center the overall block content, especially the h3 */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    max-width: 800px; /* Reduced max width */
+    margin: 0 auto; /* Center the info block on the page */
 }
 
 .company-info-block h3 {
     font-size: 2rem;
     color: #00aaff;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem; /* Reduced by half */
 }
 
-.company-info-block p {
+.company-content-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-rows: auto auto; /* Two rows, content-sized */
+    gap: 10px; /* Reduced by half */
+    align-items: start; /* Align items to the top of their cells */
+}
+
+.grid-item-image {
+    text-align: center;
+}
+
+.grid-item-image .company-anniversary-image {
+    max-width: 50%; /* Image increased to 50% */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center image horizontally */
+}
+
+.grid-item-vision p {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.1rem;
     color: #555;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem; /* Reduced by half */
+    text-align: left; /* Revert to left-align text */
 }
 
-.company-image-block img {
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.grid-item-mission-and-button {
+    grid-column: 1 / -1; /* Span across both columns */
+    /* Removed text-align: center here to allow child p to be left-aligned */
+}
+
+.grid-item-mission-and-button p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.75rem; /* Reduced by half */
+    text-align: left; /* Left align the text */
+}
+
+.grid-item-mission-and-button .btn-secondary {
+    display: block; /* Make button block-level to apply auto margins */
+    margin: 0.5rem auto 0 auto; /* Reduced by half */
+}
+
+/* Adjustments for responsive behavior */
+@media (max-width: 768px) {
+    .company-content-grid-2x2 {
+        grid-template-columns: 1fr; /* Stack all items vertically on mobile */
+        grid-template-rows: auto; /* Auto rows for stacking */
+    }
+
+    .grid-item-mission-and-button {
+        grid-column: auto; /* Remove span on mobile */
+    }
+
+    .grid-item-image .company-anniversary-image {
+        max-width: 50%; /* Adjust image size for stacked mobile view */
+    }
+    
+    .grid-item-vision p,
+    .grid-item-mission-and-button p {
+        text-align: center; /* Center text on mobile when stacked */
+    }
+
+    .grid-item-mission-and-button .btn-secondary {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Ensure other company info block elements are centered on mobile */
+    .company-info-block p {
+        text-align: center;
+    }
 }
 
 .btn-secondary {

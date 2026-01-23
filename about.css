@@ -54,6 +54,6 @@ body {
 
 /* Mobile specific positioning for popup */
 #employee-popup.popup-mobile-above {
-    /* Center horizontally (-50% of its own width), move up by 100% of its own height */
-    transform: translate(-50%, -100%); 
+    /* Center horizontally (-50% of its own width), move up by 120% of its own height to add more space */
+    transform: translate(-50%, -120%); 
 }

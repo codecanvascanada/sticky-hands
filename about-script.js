@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Central Force ---
             const center = { x: matterContainer.clientWidth / 2, y: matterContainer.clientHeight / 2 };
-            const pullForce = 0.0003; // Adjusted pull force for centering
-            const repulsionForce = 0.001; // Very gentle repulsion
+            const pullForce = 0.0008; // Increased pull force for faster sticking together
+            const repulsionForce = 0.00025; // Further reduced repulsion for less tremor
 
             Events.on(engine, 'beforeUpdate', () => {
                 bodies.forEach(body => {
@@ -113,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         const distance = Matter.Vector.magnitude(Matter.Vector.sub(body.position, otherBody.position));
                         const minDistance = body.circleRadius + otherBody.circleRadius;
 
-                        if (distance < minDistance + 10) { // Add a small buffer
+                        if (distance < minDistance + 2) { // Reduced buffer for repulsion
                             const normal = Matter.Vector.normalise(Matter.Vector.sub(body.position, otherBody.position));
-                            const forceMagnitude = (minDistance + 10 - distance) * repulsionForce; // Force increases as they get closer
+                            const forceMagnitude = (minDistance + 2 - distance) * repulsionForce; // Force increases as they get closer
 
                             Body.applyForce(body, body.position, {
                                 x: normal.x * forceMagnitude,
