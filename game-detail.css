@@ -1,0 +1,312 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* --- Game Header --- */
+.game-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem;
+}
+
+.back-to-home {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: color 0.3s;
+}
+
+.back-to-home:hover {
+    color: #00aaff;
+}
+
+
+/* --- Hero Section --- */
+.hero {
+    height: 80vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.game-logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.game-tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.store-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.store-btn {
+    display: inline-block; /* Changed from flex, as content is now just an image */
+    text-decoration: none;
+    transition: transform 0.3s; /* Only transform for hover effect */
+    border-radius: 8px; /* Maintain rounded corners, if image is transparent, this will show */
+    overflow: hidden; /* Ensures image respects border-radius */
+}
+
+.store-btn:hover {
+    transform: translateY(-3px);
+}
+
+.store-buttons img {
+    height: 60px; /* Set a fixed height for the images */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space below image */
+}
+
+
+
+/* --- Sticky Nav --- */
+.sticky-nav {
+    background-color: #1a1a2e;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.sticky-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.sticky-nav a {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sticky-nav a:hover, .sticky-nav a.active {
+    color: #00aaff;
+}
+
+
+/* --- Content Sections --- */
+.content-section {
+    padding: 80px 0;
+}
+
+.content-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #00aaff;
+}
+
+.content-section p {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "image title"
+        "image description";
+    gap: 0 3rem;
+    align-items: center; /* Changed from start to center */
+    max-width: 900px; /* Set a max-width for the grid itself */
+    margin: 0 auto; /* Center the grid within the container */
+}
+
+.about-image {
+    grid-area: image;
+    position: sticky; /* Make the image sticky within its container */
+    top: 120px; /* Adjust based on sticky-nav height */
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.about-title {
+    grid-area: title;
+    text-align: left;
+}
+
+.about-title h2 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.about-description {
+    grid-area: description;
+    text-align: left;
+}
+
+.about-description p {
+    text-align: left;
+    margin: 0; /* Reset margin */
+}
+
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "title"
+            "description";
+        gap: 2rem 0;
+    }
+
+    .about-image {
+        position: static; /* Unset sticky position on mobile */
+    }
+
+    .about-title h2, .about-description p {
+        text-align: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr; /* Stack features on mobile */
+    }
+
+    .media-grid {
+        grid-template-columns: 1fr; /* Stack media on mobile */
+    }
+
+}
+
+
+.alt-bg {
+    background-color: #f8f8f8;
+}
+
+
+/* --- Features Grid --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Enforce 3 columns */
+    gap: 2rem;
+    text-align: center;
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    color: #0056b3;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- Media Grid --- */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Enforce 3 columns */
+    gap: 1.5rem;
+}
+
+.media-grid img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.media-grid img:hover {
+    transform: scale(1.05);
+}
+
+
+/* --- Game Footer --- */
+.game-footer {
+    background-color: #1a1a2e;
+    color: #b0b0d0;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.game-footer a {
+    color: #00aaff;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+/* --- Separator Image --- */
+.separator-image {
+    text-align: center;
+    margin: 4rem 0; /* Add some vertical space */
+}
+
+.separator-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
