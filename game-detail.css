@@ -216,6 +216,31 @@ body {
 
 
 @media (max-width: 768px) {
+    .game-logo-text {
+        font-size: 3rem;
+    }
+    .game-tagline {
+        font-size: 1.2rem;
+    }
+    .store-buttons img {
+        height: 45px;
+    }
+
+    .sticky-nav ul {
+        gap: 1.5rem;
+    }
+    .sticky-nav a {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        padding: 60px 0;
+    }
+    .content-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -238,7 +263,7 @@ body {
     }
 
     .media-grid {
-        grid-template-columns: 1fr; /* Stack media on mobile */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
     }
 
 }

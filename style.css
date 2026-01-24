@@ -192,6 +192,19 @@ img {
     transition: 0.3s;
 }
 
+.hamburger-menu.is-active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
 /* --- Hero Section --- */
 .hero-section {
     min-height: 50vh;
@@ -719,35 +732,45 @@ section h2 {
         font-size: 1.2rem; /* 모바일에서 로고 텍스트 크기 조절 */
     }
     
-    .main-nav .nav-links {
-        display: none;
-        flex-direction: column;
+    .main-nav {
+        display: none; /* Hide the entire nav by default on mobile */
         position: absolute;
-        top: 100%;
+        top: 0;
         left: 0;
         width: 100%;
-        background-color: rgba(26, 26, 46, 0.95);
-        padding: 1rem 0;
+        height: 100vh;
+        background-color: rgba(26, 26, 46, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .main-nav.active {
+        display: flex; /* Show it when active */
+    }
+
+    .main-nav .nav-links {
+        flex-direction: column;
         text-align: center;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     }
-    .main-nav .nav-links.active {
-        display: flex;
-    }
+    
     .main-nav .nav-links li {
         margin: 1rem 0;
     }
+
     .main-nav .nav-links a {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+    }
+    
+    .main-nav .lang-selector {
+        margin-left: 0;
+        margin-top: 1.5rem;
     }
     
     /* 랭귀지 셀렉터와 햄버거 메뉴 정렬 */
-    .lang-selector {
-        margin-left: auto;
-    }
     .hamburger-menu {
         display: flex;
-        margin-left: 1rem;
+        z-index: 1002; /* Ensure it's above the nav overlay */
     }
 
     .hero-section h1 {
@@ -804,8 +827,18 @@ section h2 {
         display: none;
     }
 
-    /* 게임 그리드를 모바일에서 단일 열로 */
+    /* 게임 그리드를 모바일에서 2열로 */
     .games-section .game-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 최신 뉴스 그리드를 모바일에서 단일 열로 */
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 채용 그리드를 모바일에서 단일 열로 */
+    .job-openings-grid {
         grid-template-columns: 1fr;
     }
 }
