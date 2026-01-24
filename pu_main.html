@@ -84,7 +84,9 @@
             <div class="container">
                 <h2 data-translate="media_title">メディア</h2>
                 <div class="media-grid">
-                    <img src="images/pu_main.png" alt="Screenshot 1">
+                    <a href="#" class="media-item">
+                        <img src="images/pu_main.png" alt="Screenshot 1">
+                    </a>
                 </div>
             </div>
         </section>
@@ -96,6 +98,16 @@
             <a href="index.html" data-translate="footer_back_to_main">メインサイトに戻る</a>
         </div>
     </footer>
+
+    <!-- Media Popup -->
+    <div id="media-popup" class="media-popup">
+        <div class="media-popup-content">
+            <span class="media-popup-close">&times;</span>
+            <div id="media-popup-container">
+                <!-- Content (video or image) will be injected here by JS -->
+            </div>
+        </div>
+    </div>
 
     <script src="game-detail-script.js"></script>
     <script src="i18n.js"></script>

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Mobile Hamburger Menu ---
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const mainNav = document.getElementById('mainNav');
 
@@ -8,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.toggle('is-active');
         });
 
-        // Add event listeners to each navigation link to close the menu on click
         const links = mainNav.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', function() {
@@ -17,6 +17,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     hamburgerMenu.classList.remove('is-active');
                 }
             });
+        });
+    }
+
+    // --- Video Popup ---
+    const playBtn = document.getElementById('play-video-btn');
+    const videoPopup = document.getElementById('video-popup');
+    const closeBtn = document.querySelector('.video-popup-close');
+    const videoIframe = document.getElementById('video-popup-iframe');
+
+    if (playBtn && videoPopup && closeBtn && videoIframe) {
+        const videoId = playBtn.getAttribute('data-video-id');
+        const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+        const openPopup = () => {
+            videoIframe.setAttribute('src', videoSrc);
+            videoPopup.classList.add('active');
+        };
+
+        const closePopup = () => {
+            videoIframe.setAttribute('src', ''); // Stop the video
+            videoPopup.classList.remove('active');
+        };
+
+        playBtn.addEventListener('click', openPopup);
+        closeBtn.addEventListener('click', closePopup);
+        
+        // Close popup if user clicks on the background overlay
+        videoPopup.addEventListener('click', function(e) {
+            if (e.target === videoPopup) {
+                closePopup();
+            }
         });
     }
 });

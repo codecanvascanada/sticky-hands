@@ -140,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn-primary" data-translate="view_all_news"></a>
+                <a href="#" class="btn-primary-outline" data-translate="view_all_news"></a>
             </div>
         </section>
 
@@ -173,8 +173,8 @@
                 <div class="careers-intro">
                     <p data-translate="careers_intro"></p>
                 </div>
-                <div class="youtube-embed-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jCMOsEaWZMY?si=Rzjn-NLHNm6xks1b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="careers-video-container">
+                    <button id="play-video-btn" class="btn-primary-outline" data-translate="watch_video" data-video-id="jCMOsEaWZMY">Watch Video</button>
                 </div>
                 <div class="job-openings-grid">
                     <div class="job-card">
@@ -254,5 +254,15 @@
 
     <script src="script.js"></script>
     <script src="i18n.js"></script>
+
+    <!-- Video Popup -->
+    <div id="video-popup" class="video-popup">
+        <div class="video-popup-content">
+            <span class="video-popup-close">&times;</span>
+            <div class="video-container">
+                <iframe id="video-popup-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

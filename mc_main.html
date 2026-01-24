@@ -85,15 +85,15 @@
                 <h2 data-translate="media_title">メディア</h2>
                 <div class="media-grid">
 
-<a href="https://www.youtube.com/watch?v=gsxOvpDaV60" target="_blank">
+<a href="#" class="media-item" data-video-id="gsxOvpDaV60">
     <img src="images/ms_m1.png" alt="Merge Survival">
 </a>
 
-<a href="https://youtu.be/z4UL-aoicoA?si=zx46TYjSi5rYBDLC" target="_blank">
+<a href="#" class="media-item" data-video-id="z4UL-aoicoA">
     <img src="images/ms_m2.png" alt="Merge Survival">
 </a>
                
-<a href="https://youtu.be/dU-82jFf_cM?si=NnKXQS5ebiZ8ir9g" target="_blank">
+<a href="#" class="media-item" data-video-id="dU-82jFf_cM">
     <img src="images/ms_m3.png" alt="Merge Survival">
 </a>
                 </div>
@@ -107,6 +107,16 @@
             <a href="index.html" data-translate="footer_back_to_main">メインサイトに戻る</a>
         </div>
     </footer>
+
+    <!-- Media Popup -->
+    <div id="media-popup" class="media-popup">
+        <div class="media-popup-content">
+            <span class="media-popup-close">&times;</span>
+            <div id="media-popup-container">
+                <!-- Content (video or image) will be injected here by JS -->
+            </div>
+        </div>
+    </div>
 
     <script src="game-detail-script.js"></script>
     <script src="i18n.js"></script>

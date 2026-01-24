@@ -46,4 +46,54 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(section);
         });
     }
+
+    // --- Media Popup ---
+    const mediaItems = document.querySelectorAll('.media-item');
+    const mediaPopup = document.getElementById('media-popup');
+    const mediaPopupContainer = document.getElementById('media-popup-container');
+    const closeBtn = document.querySelector('.media-popup-close');
+
+    if (mediaItems.length > 0 && mediaPopup && mediaPopupContainer && closeBtn) {
+        const openPopup = (e) => {
+            e.preventDefault();
+            const mediaItem = e.currentTarget;
+            const videoId = mediaItem.getAttribute('data-video-id');
+            const imgSrc = mediaItem.querySelector('img')?.getAttribute('src');
+
+            // Clear previous content
+            mediaPopupContainer.innerHTML = '';
+
+            if (videoId) {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', 'true');
+                mediaPopupContainer.appendChild(iframe);
+            } else if (imgSrc) {
+                const img = document.createElement('img');
+                img.setAttribute('src', imgSrc);
+                mediaPopupContainer.appendChild(img);
+            }
+
+            mediaPopup.classList.add('active');
+        };
+
+        const closePopup = () => {
+            mediaPopupContainer.innerHTML = ''; // Stop video and remove content
+            mediaPopup.classList.remove('active');
+        };
+
+        mediaItems.forEach(item => {
+            item.addEventListener('click', openPopup);
+        });
+
+        closeBtn.addEventListener('click', closePopup);
+
+        mediaPopup.addEventListener('click', function(e) {
+            if (e.target === mediaPopup) {
+                closePopup();
+            }
+        });
+    }
 });
