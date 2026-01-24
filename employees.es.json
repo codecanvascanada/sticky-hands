@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Boss mob",
+        "title": "CEO / Negocios",
+        "code": 0
+    },
+    {
+        "name": "Lady boss",
+        "title": "Directora Creativa / PD / AD / UI",
+        "code": 1
+    },
+    {
+        "name": "Goon",
+        "title": "CTO / Servidor / Cliente",
+        "code": 1
+    },
+    {
+        "name": "Tenvolts",
+        "title": "Programador Senior / Cliente",
+        "code": 2
+    },
+    {
+        "name": "AudioDJ",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "Sara",
+        "title": "Diseñadora Gráfica Principal / PD / UI",
+        "code": 3
+    },
+    {
+        "name": "Sleepot",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "KDY",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "Songun",
+        "title": "Diseñador de Juegos Principal / Diseño de Juegos",
+        "code": 4
+    },
+    {
+        "name": "changhyeon",
+        "title": "Programador Senior / Cliente",
+        "code": 2
+    },
+    {
+        "name": "phmonkey",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "eveyeye",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "SYS",
+        "title": "Director de Negocios / Negocios",
+        "code": 1
+    },
+    {
+        "name": "wooyoung",
+        "title": "Programador Senior / Cliente",
+        "code": 2
+    },
+    {
+        "name": "sangwoo",
+        "title": "Diseñador Gráfico / Gráfico",
+        "code": 3
+    },
+    {
+        "name": "zero",
+        "title": "Programador Senior / Cliente",
+        "code": 2
+    },
+    {
+        "name": "my0928",
+        "title": "Diseñador de Juegos / Diseño de Juegos",
+        "code": 4
+    },
+    {
+        "name": "Aruu",
+        "title": "Guionista / Diseño de Juegos",
+        "code": 4
+    },
+    {
+        "name": "detail.kim",
+        "title": "Diseñador de Juegos / Diseño de Juegos",
+        "code": 4
+    },
+    {
+        "name": "songhilly",
+        "title": "Diseñador Gráfico / UI",
+        "code": 3
+    },
+    {
+        "name": "TÚ",
+        "title": "¡Gracias por jugar!",
+        "code": 100
+    }
+]

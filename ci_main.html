@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,16 @@
 <body>
 
     <header class="game-header">
-        <a href="index.html" class="back-to-home">
-            &lt; All Games
-        </a>
+        <a href="index.html" class="back-to-home" data-translate="back_to_games">&lt; 全てのゲーム</a>
+        <div class="lang-selector">
+            <!-- Language switcher will be populated by i18n.js -->
+        </div>
     </header>
 
     <section class="hero" style="background-image: url('images/ci_main.png');">
         <div class="hero-content">
             <h1 class="game-logo-text">Solitaire Cat Islands</h1>
-            <p class="game-tagline">Classic Solitaire meets island decoration!</p>
+            <p class="game-tagline" data-translate="ci_tagline">クラシックソリティアと島の装飾が出会う！</p>
             <div class="store-buttons">
                 <a href="#" class="store-btn app-store">
                     <img src="images/appstore-300x92.png" alt="Download on the App Store">
@@ -36,9 +37,9 @@
     <nav class="sticky-nav">
         <div class="container">
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#media">Media</a></li>
+                <li><a href="#about" data-translate="nav_about">概要</a></li>
+                <li><a href="#features" data-translate="nav_features">特徴</a></li>
+                <li><a href="#media" data-translate="nav_media">メディア</a></li>
             </ul>
         </div>
     </nav>
@@ -50,10 +51,10 @@
                     <img src="images/phone1.png" alt="About Solitaire Cat Islands">
                 </div>
                 <div class="about-title">
-                    <h2>About The Game</h2>
+                    <h2 data-translate="about_title">ゲーム概要</h2>
                 </div>
                 <div class="about-description">
-                    <p>A relaxing blend of classic solitaire and island decoration. Play cards, win rewards, and build a beautiful paradise for your feline friends.</p>
+                    <p data-translate="ci_about_desc">クラシックソリティアと島の装飾のリラックスしたブレンド。カードをプレイし、報酬を獲得し、猫の友達のために美しい楽園を築きましょう。</p>
                 </div>
             </div>
         </section>
@@ -64,19 +65,19 @@
 
         <section id="features" class="content-section alt-bg">
             <div class="container">
-                <h2>Features</h2>
+                <h2 data-translate="features_title">特徴</h2>
                 <div class="features-grid">
                     <div class="feature-item">
-                        <h3>Classic Solitaire</h3>
-                        <p>Enjoy the timeless card game you know and love.</p>
+                        <h3 data-translate="ci_feature1_title">クラシックソリティア</h3>
+                        <p data-translate="ci_feature1_desc">あなたが知っていて大好きな、時代を超越したカードゲームをお楽しみください。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>Build an Island</h3>
-                        <p>Use your winnings to create a stunning island paradise.</p>
+                        <h3 data-translate="ci_feature2_title">島を建てる</h3>
+                        <p data-translate="ci_feature2_desc">賞金を使って、見事な島の楽園を作りましょう。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>Cute Cat Companions</h3>
-                        <p>Unlock adorable cats to live on your island.</p>
+                        <h3 data-translate="ci_feature3_title">かわいい猫の仲間</h3>
+                        <p data-translate="ci_feature3_desc">あなたの島に住む愛らしい猫のロックを解除してください。</p>
                     </div>
                 </div>
             </div>
@@ -84,7 +85,7 @@
 
         <section id="media" class="content-section">
             <div class="container">
-                <h2>Media</h2>
+                <h2 data-translate="media_title">メディア</h2>
                 <div class="media-grid">
                     <img src="images/ci_main.png" alt="Screenshot 1">
                 </div>
@@ -94,11 +95,12 @@
 
     <footer class="game-footer">
         <div class="container">
-            <p>&copy; 2024 StickyHands Inc. All rights reserved.</p>
-            <a href="index.html">Back to Main Site</a>
+            <p data-translate="footer_copyright">&copy; 2024 StickyHands Inc. 無断複写・転載を禁じます。</p>
+            <a href="index.html" data-translate="footer_back_to_main">メインサイトに戻る</a>
         </div>
     </footer>
 
     <script src="game-detail-script.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

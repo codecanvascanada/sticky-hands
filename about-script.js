@@ -1,7 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initAboutPage() {
     console.log("about-script.js is running.");
     const matterContainer = document.querySelector('#matter-container');
     if (!matterContainer) return;
+
+    // Clear previous canvas if it exists
+    if (matterContainer.querySelector('canvas')) {
+        matterContainer.innerHTML = '';
+    }
 
     // --- Matter.js Aliases ---
     const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Events, Body, Query } = Matter;
@@ -37,45 +42,58 @@ document.addEventListener('DOMContentLoaded', () => {
     ]);
 
     // --- Employee Data (fetched from JSON) ---
-    fetch('employees.json')
+    const currentLang = document.documentElement.lang || 'en';
+    let employeeJsonPath = 'employees.json';
+
+    if (currentLang !== 'en') {
+        employeeJsonPath = `employees.${currentLang}.json`;
+    }
+
+    fetch(employeeJsonPath)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                return fetch(`lang/${currentLang}.json`).then(langResponse => {
+                    if (!langResponse.ok) {
+                        throw new Error(`HTTP error! status: ${response.status} and failed to load lang/${currentLang}.json`);
+                    }
+                    return langResponse.json();
+                }).then(langData => {
+                    throw new Error(`${langData.error_failed_to_load_employees_json || 'Failed to load employees.json. Please ensure the file exists and is accessible.'} (Details: HTTP error! status: ${response.status})`);
+                });
             }
             return response.json();
         })
         .then(employeeData => {
-            const employees = employeeData; // Use fetched data
-            const colorPalette = ['#5F7285', '#8E7E9F', '#A2B9BC', '#D0B49F', '#6C8E9D']; // 5 Modern, sophisticated colors
+            const employees = employeeData; 
+            const colorPalette = ['#5F7285', '#8E7E9F', '#A2B9BC', '#D0B49F', '#6C8E9D']; 
 
-            // Container for HTML names
             const namesContainer = document.getElementById('employee-names-container');
-            const nameElements = []; // To store references to name divs
+            namesContainer.innerHTML = ''; // Clear old names
+            const nameElements = []; 
 
             employees.forEach((employee, i) => {
-                employee.groupColor = (employee.code === 100) ? '#FF4500' : colorPalette[employee.code]; // Assign red for code 100, otherwise from palette
+                employee.groupColor = (employee.code === 100) ? '#FF4500' : colorPalette[employee.code]; 
 
-                // Create HTML element for the name
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'employee-name-overlay';
                 nameDiv.innerText = employee.name;
                 namesContainer.appendChild(nameDiv);
-                nameElements.push({ employeeData: employee, element: nameDiv, body: null }); // 'body' will be assigned later
+                nameElements.push({ employeeData: employee, element: nameDiv, body: null });
             });
 
-            // Determine if it's a mobile screen
             const isMobile = window.innerWidth <= 768;
-            const radiusMultiplier = isMobile ? 0.8 : 1; // Scale to 80% on mobile
+            const radiusMultiplier = isMobile ? 0.8 : 1; 
             let bodies;
 
-            // --- Body Creation ---
+            Composite.clear(world, false); // Clear existing bodies
+
             const nonCentralEmployees = employees.filter(emp => emp.code !== 100);
             const centralEmployees = employees.filter(emp => emp.code === 100);
 
             const otherBodies = nonCentralEmployees.map((employee) => {
                 const baseRadius = Math.random() * 20 + 30;
                 const radius = baseRadius * radiusMultiplier;
-                const x = matterContainer.clientWidth / 2; // All start at center
+                const x = matterContainer.clientWidth / 2;
                 const y = matterContainer.clientHeight / 2;
 
                 const body = Bodies.circle(x, y, radius, {
@@ -89,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         fillStyle: employee.groupColor,
                     }
                 });
-                // Find original index to correctly map name element
                 const originalIndex = employees.indexOf(employee);
                 if (originalIndex !== -1) {
                     nameElements[originalIndex].body = body;
@@ -100,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const centralBodies = centralEmployees.map((employee) => {
                 const baseRadius = Math.random() * 20 + 30;
                 const radius = baseRadius * radiusMultiplier;
-                const x = matterContainer.clientWidth / 2; // Always at center
+                const x = matterContainer.clientWidth / 2; 
                 const y = matterContainer.clientHeight / 2;
 
                 const body = Bodies.circle(x, y, radius, {
@@ -114,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         fillStyle: employee.groupColor,
                     }
                 });
-                // Find original index to correctly map name element
                 const originalIndex = employees.indexOf(employee);
                 if (originalIndex !== -1) {
                     nameElements[originalIndex].body = body;
@@ -122,13 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return body;
             });
 
-            bodies = [...otherBodies, ...centralBodies]; // Central bodies come last in the array
-            Composite.add(world, bodies); // Add all bodies to the world
+            bodies = [...otherBodies, ...centralBodies]; 
+            Composite.add(world, bodies); 
 
-            // --- Central Force ---
             const center = { x: matterContainer.clientWidth / 2, y: matterContainer.clientHeight / 2 };
-            const pullForce = 0.0005; // Reduced pull force as it was too strong
-            const repulsionForce = 0.00025; // Further reduced repulsion for less tremor
+            const pullForce = 0.0005; 
+            const repulsionForce = 0.00025; 
 
             Events.on(engine, 'beforeUpdate', () => {
                 bodies.forEach(body => {
@@ -137,19 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         x: direction.x * pullForce,
                         y: direction.y * pullForce
                     });
-                    Body.setAngularVelocity(body, 0); // Explicitly stop all rotation
-                    Body.setAngle(body, 0); // Reset angle to 0
+                    Body.setAngularVelocity(body, 0); 
+                    Body.setAngle(body, 0); 
 
-                    // Apply repulsion force from other bodies
                     bodies.forEach(otherBody => {
                         if (body === otherBody) return;
 
                         const distance = Matter.Vector.magnitude(Matter.Vector.sub(body.position, otherBody.position));
                         const minDistance = body.circleRadius + otherBody.circleRadius;
 
-                        if (distance < minDistance + 2) { // Reduced buffer for repulsion
+                        if (distance < minDistance + 2) { 
                             const normal = Matter.Vector.normalise(Matter.Vector.sub(body.position, otherBody.position));
-                            const forceMagnitude = (minDistance + 2 - distance) * repulsionForce; // Force increases as they get closer
+                            const forceMagnitude = (minDistance + 2 - distance) * repulsionForce; 
 
                             Body.applyForce(body, body.position, {
                                 x: normal.x * forceMagnitude,
@@ -160,89 +174,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // --- Update HTML Name Overlays ---
             Events.on(engine, 'afterUpdate', () => {
-                nameElements.forEach(item => { // Iterate through nameElements which has both employeeData and element
+                nameElements.forEach(item => {
                     if (item.body && item.element) {
                         item.element.style.left = `${item.body.position.x}px`;
                         item.element.style.top = `${item.body.position.y}px`;
-                        const radius = item.body.circleRadius || 30; // Fallback radius
+                        const radius = item.body.circleRadius || 30; 
                         item.element.style.fontSize = `${Math.floor(radius * 0.4)}px`;
                     }
                 });
             });
 
-            // --- Mouse Interaction ---
             const mouse = Mouse.create(render.canvas);
             const mouseConstraint = MouseConstraint.create(engine, {
                 mouse: mouse,
-                constraint: { stiffness: 0.1, render: { visible: false } } // Set stiffness back to a small positive value
+                constraint: { stiffness: 0.1, render: { visible: false } }
             });
             Composite.add(world, mouseConstraint);
 
-            // --- Popup Logic for Canvas ---
             const popup = document.getElementById('employee-popup');
-            let currentBody = null; // This will now only be set when a body is *pressed*
+            let currentBody = null; 
 
-            // Helper to update popup position and class
             function updatePopupPosition(eventMousePosition) {
                 const matterContainerRect = matterContainer.getBoundingClientRect();
-                // Set the base left/top relative to the matterContainer's origin (top-left)
                 popup.style.left = `${eventMousePosition.x - matterContainerRect.left}px`;
                 popup.style.top = `${eventMousePosition.y - matterContainerRect.top}px`;
 
-                // Apply mobile-specific class for CSS transform
                 if (isMobile) {
                     popup.classList.add('popup-mobile-above');
                 } else {
-                    popup.classList.remove('popup-mobile-above'); // Ensure it's removed for desktop
+                    popup.classList.remove('popup-mobile-above');
                 }
             }
 
-            // On mousedown/touchstart, show popup
             Events.on(mouseConstraint, 'mousedown', (event) => {
                 const foundBodies = Query.point(bodies, event.mouse.position);
                 if (foundBodies.length > 0) {
                     const body = foundBodies[0];
-                    currentBody = body; // Set currentBody on press
+                    currentBody = body; 
                     const { name, title } = body.employeeData;
                     popup.innerHTML = `<strong>${name}</strong><br><small>${title}</small>`;
                     popup.style.display = 'block';
-                    updatePopupPosition(event.mouse.position); // Set initial position and class
+                    updatePopupPosition(event.mouse.position); 
                 }
             });
 
-            // On mousemove, update popup position IF a body is "active" (i.e., held down)
             Events.on(mouseConstraint, 'mousemove', (event) => {
-                if (currentBody) { // Only position if a body is currently pressed/active
-                    updatePopupPosition(event.mouse.position); // Update position dynamically
+                if (currentBody) { 
+                    updatePopupPosition(event.mouse.position); 
                 }
             });
 
-            // On mouseup/touchend, hide popup
             Events.on(mouseConstraint, 'mouseup', () => {
-                if (currentBody) { // Only hide if a body was previously pressed
+                if (currentBody) { 
                     currentBody = null;
                     popup.style.display = 'none';
-                    popup.classList.remove('popup-mobile-above'); // Clean up class
+                    popup.classList.remove('popup-mobile-above'); 
                 }
             });
 
-            // Add mouseleave listener to matterContainer to hide popup when mouse leaves canvas area
-            // This acts as a fallback if mouseup doesn't fire (e.g., drag off canvas)
             matterContainer.addEventListener('mouseleave', () => {
-                if (currentBody) { // Only hide if a body was active
+                if (currentBody) { 
                     currentBody = null;
                     popup.style.display = 'none';
-                    popup.classList.remove('popup-mobile-above'); // Clean up class
+                    popup.classList.remove('popup-mobile-above'); 
                 }
             });
 
-            // --- Run Engine and Renderer ---
             Runner.run(engine);
             Render.run(render);
 
-            // --- Resize Handling ---
             window.addEventListener('resize', () => {
                 console.log("Window resized. Full responsive resize not implemented in this example.");
             });
@@ -250,23 +251,61 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error loading employee data:', error);
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'fetch-error-message'; // Add a class for styling
-            errorDiv.style.color = 'red';
-            errorDiv.style.position = 'absolute';
-            errorDiv.style.top = '50%';
-            errorDiv.style.left = '50%';
-            errorDiv.style.transform = 'translate(-50%, -50%)';
-            errorDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
-            errorDiv.style.padding = '20px';
-            errorDiv.style.borderRadius = '10px';
-            errorDiv.style.zIndex = '1000';
-            errorDiv.innerHTML = `
-                <h2>Error Loading Employee Data</h2>
-                <p>Failed to load 'employees.json'. Please ensure the file exists and is accessible.</p>
-                <p>Details: ${error.message}</p>
-                <p>Check the browser's developer console (F12) for network errors.</p>
-            `;
-            matterContainer.appendChild(errorDiv);
+            const currentLangForError = document.documentElement.lang || 'en';
+            fetch(`lang/${currentLangForError}.json`).then(langResponse => {
+                if (!langResponse.ok) {
+                    throw new Error(`Failed to load language file for error messages: lang/${currentLangForError}.json`);
+                }
+                return langResponse.json();
+            }).then(langData => {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'fetch-error-message'; 
+                errorDiv.style.color = 'red';
+                errorDiv.style.position = 'absolute';
+                errorDiv.style.top = '50%';
+                errorDiv.style.left = '50%';
+                errorDiv.style.transform = 'translate(-50%, -50%)';
+                errorDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                errorDiv.style.padding = '20px';
+                errorDiv.style.borderRadius = '10px';
+                errorDiv.style.zIndex = '1000';
+                errorDiv.innerHTML = `
+                    <h2>${langData.error_loading_employees || 'Error Loading Employee Data'}</h2>
+                    <p>${langData.error_failed_to_load_employees_json || 'Failed to load employees.json. Please ensure the file exists and is accessible.'}</p>
+                    <p>${langData.error_details || 'Details'}: ${error.message}</p>
+                    <p>${langData.error_check_console || `Check the browser's developer console (F12) for network errors.`}</p>
+                `;
+                matterContainer.appendChild(errorDiv);
+            }).catch(langError => {
+                console.error('Secondary error fetching language for error message:', langError);
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'fetch-error-message';
+                errorDiv.style.color = 'red';
+                errorDiv.style.position = 'absolute';
+                errorDiv.style.top = '50%';
+                errorDiv.style.left = '50%';
+                errorDiv.style.transform = 'translate(-50%, -50%)';
+                errorDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                errorDiv.style.padding = '20px';
+                errorDiv.style.borderRadius = '10px';
+                errorDiv.style.zIndex = '1000';
+                errorDiv.innerHTML = `
+                    <h2>Error Loading Employee Data</h2>
+                    <p>Failed to load 'employees.json'. Please ensure the file exists and is accessible.</p>
+                    <p>Details: ${error.message}</p>
+                    <p>Check the browser's developer console (F12) for network errors.</p>
+                `;
+                matterContainer.appendChild(errorDiv);
+            });
         });
+}
+
+// Listen for the custom event to re-initialize the Matter.js scene
+document.addEventListener('language-changed', initAboutPage);
+
+// Initial load
+document.addEventListener('DOMContentLoaded', () => {
+    // The i18n.js script will dispatch 'language-changed' on initial load,
+    // so we don't need to call initAboutPage() here directly.
+    // This prevents a double-load race condition.
 });

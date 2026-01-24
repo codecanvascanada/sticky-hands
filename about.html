@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StickyHands Inc. | About Us</title>
+    <title data-translate="about_title_text"></title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="about.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -22,15 +21,15 @@
         
         <nav class="main-nav" id="mainNav">
             <ul class="nav-links">
-                <li><a href="index.html#games">Games</a></li>
-                <li><a href="index.html#news">News</a></li>
-                <li><a href="index.html#company">Company</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="index.html#careers">Careers</a></li>
-                <li><a href="index.html#support">Support</a></li>
+                <li><a href="index.html#games" data-translate="nav_games"></a></li>
+                <li><a href="index.html#news" data-translate="nav_news"></a></li>
+                <li><a href="index.html#company" data-translate="nav_company"></a></li>
+                <li><a href="about.html" data-translate="nav_about_us"></a></li>
+                <li><a href="index.html#careers" data-translate="nav_careers"></a></li>
+                <li><a href="index.html#support" data-translate="nav_support"></a></li>
             </ul>
             <div class="lang-selector">
-                <a href="#">EN</a>
+                <!-- Language switcher will be populated by i18n.js -->
             </div>
         </nav>
         <div class="hamburger-menu" id="hamburgerMenu">
@@ -52,15 +51,15 @@
             <div class="footer-grid">
 
                 <div class="footer-col">
-                    <h3>Company</h3>
+                    <h3 data-translate="footer_company"></h3>
                     <ul>
-                        <li><a href="index.html#company">About Us</a></li>
-                        <li><a href="index.html#careers">Careers</a></li>
-                        <li><a href="index.html#news">News</a></li>
+                        <li><a href="index.html#company" data-translate="footer_about_us"></a></li>
+                        <li><a href="index.html#careers" data-translate="footer_careers"></a></li>
+                        <li><a href="index.html#news" data-translate="footer_news"></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Games</h3>
+                    <h3 data-translate="footer_games"></h3>
                     <ul>
                         <li><a href="index.html#games">Merge Survival</a></li>
                         <li><a href="index.html#games">Cat Islands</a></li>
@@ -68,16 +67,16 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Legal</h3>
+                    <h3 data-translate="footer_legal"></h3>
                     <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Parent's Guide</a></li>
+                        <li><a href="#" data-translate="footer_tos"></a></li>
+                        <li><a href="#" data-translate="footer_privacy"></a></li>
+                        <li><a href="#" data-translate="footer_parents"></a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 StickyHands Inc. All rights reserved.</p>
+                <p data-translate="footer_copyright"></p>
             </div>
         </div>
     </footer>
@@ -109,5 +108,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="script.js"></script>
     <script src="about-script.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

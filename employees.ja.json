@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Boss mob",
+        "title": "CEO / ビジネス",
+        "code": 0
+    },
+    {
+        "name": "Lady boss",
+        "title": "クリエイティブディレクター / PD / AD / UI",
+        "code": 1
+    },
+    {
+        "name": "Goon",
+        "title": "CTO / サーバー / クライアント",
+        "code": 1
+    },
+    {
+        "name": "Tenvolts",
+        "title": "シニアプログラマー / クライアント",
+        "code": 2
+    },
+    {
+        "name": "AudioDJ",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "Sara",
+        "title": "チーフグラフィックデザイナー / PD / UI",
+        "code": 3
+    },
+    {
+        "name": "Sleepot",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "KDY",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "Songun",
+        "title": "チーフゲームデザイナー / ゲームデザイン",
+        "code": 4
+    },
+    {
+        "name": "changhyeon",
+        "title": "シニアプログラマー / クライアント",
+        "code": 2
+    },
+    {
+        "name": "phmonkey",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "eveyeye",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "SYS",
+        "title": "ビジネスディレクター / ビジネス",
+        "code": 1
+    },
+    {
+        "name": "wooyoung",
+        "title": "シニアプログラマー / クライアント",
+        "code": 2
+    },
+    {
+        "name": "sangwoo",
+        "title": "グラフィックデザイナー / グラフィック",
+        "code": 3
+    },
+    {
+        "name": "zero",
+        "title": "シニアプログラマー / クライアント",
+        "code": 2
+    },
+    {
+        "name": "my0928",
+        "title": "ゲームデザイナー / ゲームデザイン",
+        "code": 4
+    },
+    {
+        "name": "Aruu",
+        "title": "脚本家 / ゲームデザイン",
+        "code": 4
+    },
+    {
+        "name": "detail.kim",
+        "title": "ゲームデザイナー / ゲームデザイン",
+        "code": 4
+    },
+    {
+        "name": "songhilly",
+        "title": "グラフィックデザイナー / UI",
+        "code": 3
+    },
+    {
+        "name": "あなた",
+        "title": "プレイしてくれてありがとう！",
+        "code": 100
+    }
+]

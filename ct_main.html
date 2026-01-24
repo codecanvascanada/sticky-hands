@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,16 @@
 <body>
 
     <header class="game-header">
-        <a href="index.html" class="back-to-home">
-            &lt; All Games
-        </a>
+        <a href="index.html" class="back-to-home" data-translate="back_to_games">&lt; 全てのゲーム</a>
+        <div class="lang-selector">
+            <!-- Language switcher will be populated by i18n.js -->
+        </div>
     </header>
 
     <section class="hero" style="background-image: url('images/ct_main.png');">
         <div class="hero-content">
             <h1 class="game-logo-text">Solitaire Cooking Tower</h1>
-            <p class="game-tagline">Build your restaurant to the sky!</p>
+            <p class="game-tagline" data-translate="ct_tagline">レストランを空まで建てよう！</p>
             <div class="store-buttons">
                 <a href="#" class="store-btn app-store">
                     <img src="images/appstore-300x92.png" alt="Download on the App Store">
@@ -36,9 +37,9 @@
     <nav class="sticky-nav">
         <div class="container">
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#media">Media</a></li>
+                <li><a href="#about" data-translate="nav_about">概要</a></li>
+                <li><a href="#features" data-translate="nav_features">特徴</a></li>
+                <li><a href="#media" data-translate="nav_media">メディア</a></li>
             </ul>
         </div>
     </nav>
@@ -50,10 +51,10 @@
                     <img src="images/phone1.png" alt="About Solitaire Cooking Tower">
                 </div>
                 <div class="about-title">
-                    <h2>About The Game</h2>
+                    <h2 data-translate="about_title">ゲーム概要</h2>
                 </div>
                 <div class="about-description">
-                    <p>Reach for the sky in this exciting solitaire adventure. Clear cards to build your tower and unlock delicious new recipes.</p>
+                    <p data-translate="ct_about_desc">このエキサイティングなソリティアアドベンチャーで空を目指しましょう。カードをクリアしてタワーを建て、おいしい新しいレシピのロックを解除します。</p>
                 </div>
             </div>
         </section>
@@ -64,19 +65,19 @@
 
         <section id="features" class="content-section alt-bg">
             <div class="container">
-                <h2>Features</h2>
+                <h2 data-translate="features_title">特徴</h2>
                 <div class="features-grid">
                     <div class="feature-item">
-                        <h3>Tower Building</h3>
-                        <p>Play solitaire to build your cooking tower floor by floor.</p>
+                        <h3 data-translate="ct_feature1_title">タワービルディング</h3>
+                        <p data-translate="ct_feature1_desc">ソリティアをプレイして、クッキングタワーを階ごとに建てましょう。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>Unlock Recipes</h3>
-                        <p>Discover and master recipes from around the world.</p>
+                        <h3 data-translate="ct_feature2_title">レシピのロック解除</h3>
+                        <p data-translate="ct_feature2_desc">世界中のレシピを発見してマスターしましょう。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>Customize Your Restaurant</h3>
-                        <p>Decorate your tower and create the restaurant of your dreams.</p>
+                        <h3 data-translate="ct_feature3_title">レストランのカスタマイズ</h3>
+                        <p data-translate="ct_feature3_desc">タワーを飾り、夢のレストランを作りましょう。</p>
                     </div>
                 </div>
             </div>
@@ -84,7 +85,7 @@
 
         <section id="media" class="content-section">
             <div class="container">
-                <h2>Media</h2>
+                <h2 data-translate="media_title">メディア</h2>
                 <div class="media-grid">
                     <img src="images/ct_main.png" alt="Screenshot 1">
                 </div>
@@ -94,11 +95,12 @@
 
     <footer class="game-footer">
         <div class="container">
-            <p>&copy; 2024 StickyHands Inc. All rights reserved.</p>
-            <a href="index.html">Back to Main Site</a>
+            <p data-translate="footer_copyright">&copy; 2024 StickyHands Inc. 無断複写・転載を禁じます。</p>
+            <a href="index.html" data-translate="footer_back_to_main">メインサイトに戻る</a>
         </div>
     </footer>
 
     <script src="game-detail-script.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

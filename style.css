@@ -139,18 +139,41 @@ img {
     transition: width 0.3s ease;
 }
 
+.lang-selector {
+    margin-left: 2.5rem;
+}
+
+#language-switcher {
+    background-color: transparent;
+    color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    appearance: none; /* Remove default select styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23e0e0e0' d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3E%3C/svg%3E"); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+}
+
+#language-switcher:focus {
+    outline: none;
+    border-color: #00aaff;
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.5);
+}
+
 .main-nav .nav-links a:hover::after,
 .main-nav .nav-links a.active::after {
     width: 100%;
 }
 
-.lang-selector a {
-    margin-left: 2.5rem;
-    color: #00aaff;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-}
+
 
 /* Hamburger menu (hidden by default on desktop) */
 .hamburger-menu {

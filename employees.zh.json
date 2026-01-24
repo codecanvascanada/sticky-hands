@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Boss mob",
+        "title": "CEO / 商务",
+        "code": 0
+    },
+    {
+        "name": "Lady boss",
+        "title": "创意总监 / PD / AD / UI",
+        "code": 1
+    },
+    {
+        "name": "Goon",
+        "title": "CTO / 服务器 / 客户端",
+        "code": 1
+    },
+    {
+        "name": "Tenvolts",
+        "title": "高级程序员 / 客户端",
+        "code": 2
+    },
+    {
+        "name": "AudioDJ",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "Sara",
+        "title": "首席平面设计师 / PD / UI",
+        "code": 3
+    },
+    {
+        "name": "Sleepot",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "KDY",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "Songun",
+        "title": "首席游戏设计师 / 游戏设计",
+        "code": 4
+    },
+    {
+        "name": "changhyeon",
+        "title": "高级程序员 / 客户端",
+        "code": 2
+    },
+    {
+        "name": "phmonkey",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "eveyeye",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "SYS",
+        "title": "商务总监 / 商务",
+        "code": 1
+    },
+    {
+        "name": "wooyoung",
+        "title": "高级程序员 / 客户端",
+        "code": 2
+    },
+    {
+        "name": "sangwoo",
+        "title": "平面设计师 / 图形",
+        "code": 3
+    },
+    {
+        "name": "zero",
+        "title": "高级程序员 / 客户端",
+        "code": 2
+    },
+    {
+        "name": "my0928",
+        "title": "游戏设计师 / 游戏设计",
+        "code": 4
+    },
+    {
+        "name": "Aruu",
+        "title": "编剧 / 游戏设计",
+        "code": 4
+    },
+    {
+        "name": "detail.kim",
+        "title": "游戏设计师 / 游戏设计",
+        "code": 4
+    },
+    {
+        "name": "songhilly",
+        "title": "平面设计师 / UI",
+        "code": 3
+    },
+    {
+        "name": "你",
+        "title": "感谢参与！",
+        "code": 100
+    }
+]
