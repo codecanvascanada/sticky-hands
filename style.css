@@ -797,6 +797,9 @@ section h2 {
 }
 
 @media (max-width: 768px) {
+    html {
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
     h1 {
         font-size: 3rem !important;
     }
@@ -827,9 +830,9 @@ section h2 {
         display: none;
     }
 
-    /* 게임 그리드를 모바일에서 2열로 */
+    /* 게임 그리드를 모바일에서 단일 열로 */
     .games-section .game-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     /* 최신 뉴스 그리드를 모바일에서 단일 열로 */

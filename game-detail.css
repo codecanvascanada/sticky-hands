@@ -261,6 +261,9 @@ body {
     .features-grid {
         grid-template-columns: 1fr; /* Stack features on mobile */
     }
+    .features-grid .feature-item {
+        width: 100%; /* Ensure feature items take full width */
+    }
 
     .media-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
