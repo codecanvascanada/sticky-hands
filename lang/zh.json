@@ -3,7 +3,7 @@
     "nav_games": "游戏",
     "nav_news": "消息",
     "nav_company": "公司",
-    "nav_about_us": "关于我们",
+    "nav_about_us": "成员",
     "nav_careers": "招聘",
     "nav_support": "支持",
     "our_games_title": "我们的游戏",
@@ -24,6 +24,7 @@
     "learn_more": "了解更多",
     "careers_title": "加入我们的团队",
     "careers_intro": "你是一位充满激情、希望创造影响力的游戏制作人吗？加入StickyHands Inc.，帮助我们塑造手机游戏的未来！",
+    "watch_video": "观看视频",
     "job1_title": "游戏开发者",
     "job1_desc": "对移动力学充满热情的Unity C#专家。",
     "apply_now": "立即申请",
@@ -162,4 +163,3 @@
     "error_details": "详情",
     "error_check_console": "检查浏览器开发者控制台 (F12) 中的网络错误。"
 }
-
