@@ -241,7 +241,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 30px;
     margin-bottom: 0.5rem; /* Reduced to minimize spacing below images */
     flex-wrap: nowrap;
 }
@@ -281,21 +281,55 @@ img {
     font-weight: 700;
     text-transform: uppercase;
     box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
-    /* Remove transition to use animation */
+    transition: transform 0.1s ease-out; /* Added for shrink effect */
 }
 
 .btn-primary:hover {
-    animation: jelly-pop 0.5s;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
 }
 
-@keyframes jelly-pop {
-    0% {
+/* Common style for buttons that shrink on press */
+.shrink-on-press {
+    transform: scale(0.9);
+}
+
+
+.animate-press-down {
+    animation: press-down-anim 0.15s ease-out forwards;
+}
+
+.animate-release-up {
+    animation: release-up-anim 0.35s ease-out;
+}
+
+.bounce-animation {
+    animation: jelly-pop 0.75s;
+}
+
+@keyframes press-down-anim {
+    from {
         transform: scale(1);
     }
-    30% {
+    to {
+        transform: scale(1.25, 0.75);
+    }
+}
+
+@keyframes release-up-anim {
+    0% {
+        transform: scale(1.25, 0.75);
+    }
+    14% { /* Corresponds to original 40% */
+        transform: scale(0.75, 1.25);
+    }
+    28% { /* Corresponds to original 50% */
+        transform: scale(1.15, 0.85);
+    }
+    50% { /* Corresponds to original 65% */
         transform: scale(0.95, 1.05);
     }
-    60% {
+    64% { /* Corresponds to original 75% */
         transform: scale(1.05, 0.95);
     }
     100% {
@@ -303,9 +337,33 @@ img {
     }
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+@keyframes jelly-pop {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        /* 1. 확 납작해짐 (에너지 축적) */
+        transform: scale(1.25, 0.75);
+    }
+    40% {
+        /* 2. 튕겨 올라가며 홀쭉해짐 (반동) */
+        transform: scale(0.75, 1.25);
+    }
+    50% {
+        /* 3. 다시 살짝 납작 */
+        transform: scale(1.15, 0.85);
+    }
+    65% {
+        /* 4. 살짝 홀쭉 */
+        transform: scale(0.95, 1.05);
+    }
+    75% {
+        /* 5. 미세하게 납작 */
+        transform: scale(1.05, 0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* --- Generic Section Styles --- */
@@ -555,7 +613,7 @@ section h2 {
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, transform 0.1s ease-out;
 }
 
 .btn-tertiary:hover {
@@ -575,7 +633,7 @@ section h2 {
     font-size: 1rem;
     line-height: 1;
     text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease-out;
     margin-top: 3rem;
     cursor: pointer;
 }
@@ -583,7 +641,6 @@ section h2 {
 .btn-primary-outline:hover {
     background-color: #00aaff;
     color: #1a1a2e;
-    animation: jelly-pop 0.5s;
 }
 
 /* --- News Section --- */
