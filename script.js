@@ -59,34 +59,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroLogoMain = document.getElementById('hero-logo-main');
 
     if (heroLogoMain) {
-        // On press, start the squash animation
-        heroLogoMain.addEventListener('mousedown', function(e) {
-            e.preventDefault(); // Prevent default anchor behavior if any
-            heroLogoMain.classList.remove('animate-release-up'); // Ensure clean state
-            heroLogoMain.classList.add('animate-press-down');
-        });
+        let pressTimeout;
+        let releasedByTimeout = false;
 
-        // On release, start the rebound animation
-        heroLogoMain.addEventListener('mouseup', function(e) {
-            e.preventDefault(); // Prevent default if any
-            heroLogoMain.classList.remove('animate-press-down'); // Remove press state
-            heroLogoMain.classList.add('animate-release-up'); // Start release animation
-
-            // Clean up the release animation class after it finishes
+        const triggerRelease = () => {
+            heroLogoMain.classList.remove('animate-press-down');
+            heroLogoMain.classList.add('animate-release-up');
             setTimeout(() => {
                 heroLogoMain.classList.remove('animate-release-up');
-            }, 350); // Duration of release-up-anim
+            }, 350);
+        };
+        
+        heroLogoMain.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            releasedByTimeout = false; // Reset flag on new press
+            heroLogoMain.classList.remove('animate-release-up');
+            heroLogoMain.classList.add('animate-press-down');
+            pressTimeout = setTimeout(() => {
+                releasedByTimeout = true; // Set flag as timeout is firing
+                triggerRelease();
+            }, 400);
         });
 
-        // If mouse leaves while pressed, treat as mouseup
+        heroLogoMain.addEventListener('mouseup', function(e) {
+            clearTimeout(pressTimeout);
+            if (!releasedByTimeout) { // Only trigger if timeout hasn't
+                triggerRelease();
+            }
+        });
+
         heroLogoMain.addEventListener('mouseleave', function(e) {
             if (heroLogoMain.classList.contains('animate-press-down')) {
-                // Manually trigger the mouseup animation logic
-                heroLogoMain.classList.remove('animate-press-down');
-                heroLogoMain.classList.add('animate-release-up');
-                setTimeout(() => {
-                    heroLogoMain.classList.remove('animate-release-up');
-                }, 350);
+                clearTimeout(pressTimeout);
+                if (!releasedByTimeout) { // Only trigger if timeout hasn't
+                    triggerRelease();
+                }
             }
         });
     }
