@@ -188,4 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // --- Prevent Image Dragging ---
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach(image => {
+        image.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+        image.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    });
 });
