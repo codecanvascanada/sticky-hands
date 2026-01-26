@@ -266,7 +266,7 @@ body {
     }
 
     .media-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        grid-template-columns: 1fr; /* 1 column on mobile */
     }
 
 }
