@@ -224,13 +224,36 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Enforce 3 columns */
     gap: 2rem;
-    text-align: center;
+    /* text-align: center; -- This is now handled by the item */
+}
+
+.feature-item {
+    background-color: #f0f0f0;
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .feature-item h3 {
-    font-size: 1.5rem;
-    color: #0056b3;
-    margin-bottom: 0.5rem;
+    font-family: 'Orbitron', sans-serif; /* Match job card title font */
+    font-size: 1.4rem; /* Match job card title size */
+    color: #333; /* Match job card title color */
+    margin-bottom: 1rem; /* More space below title */
+}
+
+.feature-item p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0; /* Remove default paragraph margin */
 }
 
 
