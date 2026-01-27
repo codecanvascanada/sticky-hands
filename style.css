@@ -532,7 +532,7 @@ section h2 {
     }
 
     .grid-item-image .company-anniversary-image {
-        max-width: 50%; /* Adjust image size for stacked mobile view */
+        max-width: 65%; /* Adjusted image size for stacked mobile view (30% larger) */
     }
     
     .grid-item-vision p,
