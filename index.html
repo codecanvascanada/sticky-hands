@@ -103,7 +103,7 @@
                         <h3 class="game-title">Pick Me Up</h3>
                     </a>
                     <a href="#" class="game-card-item coming-soon">
-                        <img src="images/wh.gif" alt="Coming Soon">
+                        <img src="images/wh.gif" alt="Coming Soon" id="coming-soon-img">
                         <h3 class="game-title faded-text" data-translate="coming_soon"></h3>
                     </a>
                 </div>
@@ -193,7 +193,6 @@
                         <a href="#" class="btn-tertiary" data-translate="apply_now"></a>
                     </div>
                 </div>
-                <a href="#" class="btn-primary-outline" data-translate="see_all_openings"></a>
             </div>
         </section>
 
@@ -216,36 +215,52 @@
         </section>
 
     </main>
-
-    <footer class="main-footer">
-        <div class="container">
-                    <div class="footer-grid">
-                        <div class="footer-col">
-                            <h3 data-translate="footer_legal"></h3>
-                            <ul>
-                                <li><a href="#" data-translate="footer_tos"></a></li>
-                                <li><a href="#" data-translate="footer_privacy"></a></li>
-                                <li><a href="#" data-translate="footer_parents"></a></li>
-                            </ul>
+                
+                    <footer class="main-footer">
+                        <div class="container">
+                            <div class="footer-grid">
+                                <div class="footer-col">
+                                    <h3 data-translate="footer_legal"></h3>
+                                    <ul>
+                                        <li><a href="#" data-translate="footer_tos"></a></li>
+                                        <li><a href="#" data-translate="footer_privacy"></a></li>
+                                        <li><a href="#" data-translate="footer_parents"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer-bottom">
+                                <div class="social-links"></div>
+                                <p data-translate="footer_copyright"></p>
+                            </div>
                         </div>
-                    </div>            <div class="footer-bottom">
-                <div class="social-links"></div>
-                <p data-translate="footer_copyright"></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="i18n.js"></script>
-
-    <!-- Video Popup -->
-    <div id="video-popup" class="video-popup">
-        <div class="video-popup-content">
-            <span class="video-popup-close">&times;</span>
-            <div class="video-container">
-                <iframe id="video-popup-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+                    </footer>
+                
+                    <script src="script.js"></script>
+                    <script src="i18n.js"></script>
+                
+                    <!-- Video Popup -->
+                    <div id="video-popup" class="video-popup">
+                        <div class="video-popup-content">
+                            <span class="video-popup-close">&times;</span>
+                            <div class="video-container">
+                                <iframe id="video-popup-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Info Popup for "Apply Now" -->
+                    <div id="info-popup" class="info-popup">
+                        <div class="info-popup-content">
+                            <span class="info-popup-close">&times;</span>
+                            <p data-translate="apply_not_opening_message"></p>
+                        </div>
+                    </div>
+                    <!-- Info Popup for "Apply Now" -->
+    <div id="info-popup" class="info-popup">
+        <div class="info-popup-content">
+            <span class="info-popup-close">&times;</span>
+            <p data-translate="apply_not_opening_message"></p>
         </div>
     </div>
 </body>
-</html>
+                </html>

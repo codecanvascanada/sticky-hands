@@ -199,4 +199,29 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         });
     });
+
+    // --- Coming Soon Button: Clickable but no navigation ---
+    const comingSoonCard = document.querySelector('.game-card-item.coming-soon');
+    if (comingSoonCard) {
+        comingSoonCard.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default navigation
+        });
+
+        const comingSoonImg = document.getElementById('coming-soon-img');
+        if (comingSoonImg) {
+            const originalSrc = 'images/wh.gif';
+            const pressSrc = 'images/wh1.gif';
+
+            comingSoonCard.addEventListener('mousedown', () => {
+                comingSoonImg.src = pressSrc;
+            });
+
+            const releaseAction = () => {
+                comingSoonImg.src = originalSrc;
+            };
+
+            comingSoonCard.addEventListener('mouseup', releaseAction);
+            comingSoonCard.addEventListener('mouseleave', releaseAction);
+        }
+    }
 });

@@ -778,10 +778,13 @@ section h2 {
 
 .footer-col ul {
     list-style: none;
+    display: flex; /* Arrange items horizontally */
+    justify-content: center; /* Center the links */
+    gap: 1rem; /* Space between links */
 }
 
 .footer-col ul li {
-    margin-bottom: 0.8rem;
+    /* margin-bottom: 0.8rem; */ /* No longer needed for vertical spacing */
 }
 
 .footer-col ul li a {
@@ -984,6 +987,56 @@ section h2 {
 .video-popup-close:hover,
 .video-popup-close:focus {
     color: #bbb;
+    text-decoration: none;
+}
+
+/* --- Info Popup --- */
+.info-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.info-popup.active {
+    display: flex;
+}
+
+.info-popup-content {
+    position: relative;
+    background-color: #1a1a2e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    color: #e0e0e0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2rem;
+}
+
+.info-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #e0e0e0;
+    font-size: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.info-popup-close:hover,
+.info-popup-close:focus {
+    color: #00aaff;
     text-decoration: none;
 }
 
