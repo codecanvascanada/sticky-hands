@@ -222,6 +222,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             comingSoonCard.addEventListener('mouseup', releaseAction);
             comingSoonCard.addEventListener('mouseleave', releaseAction);
+
+            // Prevent long-press preview/context menu specifically for this card and its image
+            comingSoonCard.addEventListener('contextmenu', (e) => { e.preventDefault(); });
+            comingSoonImg.addEventListener('contextmenu', (e) => { e.preventDefault(); });
         }
     }
 });
